@@ -3,6 +3,8 @@ const axios = require("axios");
 const session = require('express-session');
 require("dotenv").config();
 
+
+
 var config = {
   method: 'get',
   url: 'https://api.clashofclans.com/v1/clans?name=clan',
