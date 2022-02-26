@@ -7,7 +7,16 @@
     max-width: 8.25rem;
 }
 
-
+.listar{
+  display: flex;
+  flex-direction: column;
+  border: 1px solid green;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: rgba(15,28,80,.86);
+  margin-bottom: .4rem;
+  
+}
 .navBar{
   display: block;
   justify-content: space-between;
@@ -60,8 +69,8 @@ a:hover{
 }
 @media(min-width:768px){
   .nombre{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: inline-block;
+    /* grid-template-columns: repeat(3, 1fr); */
   }
   
 }
@@ -80,13 +89,14 @@ a:hover{
 .cards{
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  /* flex-direction: column; */
   align-items: center;
   gap: 1rem;
   border: 1px solid green;
   padding: 1rem;
   border-radius: 5px;
   background-color: rgba(15,28,80,.86);
+  margin-bottom: .4rem;
 }
 .cards:hover{
   background-color: rgba(208, 241, 241, 0.911);
@@ -105,11 +115,13 @@ a:hover{
     border: 1px solid green;
     padding: 1rem;
     border-radius: 5px;
+    margin: .5rem;
   }
 }
-p{
+p{text-align: center;
   font-weight: bold;
   font-size: 1rem;
+  color:rgb(29, 243, 136)
 }
 
 h1{
@@ -142,7 +154,20 @@ text-align: center;
 
 
 @media(min-width:768px){
-  p{font-size: 1.4rem;}
+  p{
+    font-size: 1rem;
+    text-align: justify;
+    color: rgb(29, 243, 136);
+   }
+  h1{font-size: 1.3rem;}
+  label{
+    display: inline-block;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+}
+@media(min-width:992px){
+  p{font-size: 1.2rem;}
   h1{font-size: 1.6rem;}
   label{
     display: inline-block;
@@ -150,11 +175,20 @@ text-align: center;
     font-weight: bold;
   }
 }
+
 select{
   border-radius: 3px;
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-family: Lato;
 
+}
+@media(min-width:992px){
+  select{
+    border-radius: 3px;
+    font-size: 1.2rem;
+    font-family: Lato;
+
+  }
 }
 select:hover{
   

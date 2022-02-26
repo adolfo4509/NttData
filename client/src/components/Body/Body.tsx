@@ -16,20 +16,35 @@ const Body = ({ searchsend }) => {
 
   let datos = allClash.items;
 
+  console.log(datos);
   const showlist = () => {
     let data =
       datos &&
-      datos.map((e) => {
+      datos?.map((e) => {
+        let local;
+        let chat;
+        if (!e.location || !e.chatLanguage) {
+        } else {
+          local = e.location.name;
+          chat = e.chatLanguage.name;
+        }
         return (
           <div className="nombre">
-            {e.labels.map((e, ID) => {
-              return (
-                <div key={ID} className="cards">
-                  <img src={e.iconUrls.small} alt="" />
-                  <p>{e.name}</p>
-                </div>
-              );
-            })}
+            <div>
+              <div className="listar">
+                <p>Tipo: {e.type}</p>
+                <p>Ubicacion: {local}</p>
+                <p>Lenguaje Chat: {chat}</p>
+              </div>
+              {e.labels.map((e, ID) => {
+                return (
+                  <div key={ID} className="cards">
+                    <img src={e.iconUrls.small} alt="" />
+                    <p>{e.name}</p>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         );
       });
@@ -66,6 +81,42 @@ const Body = ({ searchsend }) => {
             return 0;
           });
 
+        case "LocAsc":
+          return datos.sort((a, b) => {
+            const NombreA = a.name.toLowerCase();
+            const NombreB = b.name.toLowerCase();
+
+            if (NombreA < NombreB) return -1;
+            if (NombreA > NombreB) return 1;
+            return 0;
+          });
+        case "LocDes":
+          return datos.sort((a, b) => {
+            const NombreA = a.name.toLowerCase();
+            const NombreB = b.name.toLowerCase();
+
+            if (NombreA > NombreB) return -1;
+            if (NombreA < NombreB) return 1;
+            return 0;
+          });
+        case "chatAsc":
+          return datos.sort((a, b) => {
+            const NombreA = a.name.toLowerCase();
+            const NombreB = b.name.toLowerCase();
+
+            if (NombreA < NombreB) return -1;
+            if (NombreA > NombreB) return 1;
+            return 0;
+          });
+        case "chatDes":
+          return datos.sort((a, b) => {
+            const NombreA = a.name.toLowerCase();
+            const NombreB = b.name.toLowerCase();
+
+            if (NombreA > NombreB) return -1;
+            if (NombreA < NombreB) return 1;
+            return 0;
+          });
         default:
           return datos;
       }
@@ -94,21 +145,21 @@ const Body = ({ searchsend }) => {
             Descendente
           </option>
         </select>
-        <label htmlFor="state">Filtrar Ubicación:</label>
-        <select id="state" onChange={(e) => handleSortAsc(e)}>
-          <option className="ordenar" value="Asc">
+        <label htmlFor="state1">Filtrar Ubicación:</label>
+        <select id="state1" onChange={(e) => handleSortAsc(e)}>
+          <option className="ordenar" value="LocAsc">
             Ascendente
           </option>
-          <option className="ordenar" value="Des">
+          <option className="ordenar" value="LocDes">
             Descendente
           </option>
         </select>{" "}
-        <label htmlFor="state">Filtrar por WarLeague:</label>
-        <select id="state" onChange={handleSortAsc}>
-          <option className="ordenar" value="Asc">
+        <label htmlFor="state2">Filtrar por Idioma:</label>
+        <select id="state2" onChange={handleSortAsc}>
+          <option className="ordenar" value="chatAsc">
             Ascendente
           </option>
-          <option className="ordenar" value="Des">
+          <option className="ordenar" value="chatDes">
             Descendente
           </option>
         </select>
