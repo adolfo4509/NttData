@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RootStateOrAny, useDispatch, useSelector } from "react-redux";
 import { fetchUsers } from "../../actions/intex";
-import { useEffect } from "react";
+
 import "../../css/styles.css";
 
-const Body = ({ searchsend }) => {
+export const Body = ({ searchsend }) => {
   let allClash = useSelector((state: RootStateOrAny) => state.clash);
 
   const dispatch = useDispatch();
@@ -16,7 +16,6 @@ const Body = ({ searchsend }) => {
 
   let datos = allClash.items;
 
-  console.log(datos);
   const showlist = () => {
     let data =
       datos &&
@@ -30,7 +29,7 @@ const Body = ({ searchsend }) => {
         }
         return (
           <div className="nombre">
-            <div>
+            <div key={e.id}>
               <div className="listar">
                 <p>Tipo: {e.type}</p>
                 <p>Ubicacion: {local}</p>
@@ -54,14 +53,14 @@ const Body = ({ searchsend }) => {
 
   const filterData = () => {
     if (searchsend) {
-      return datos.filter((e) =>
+      return datos.filter((e: { name: string }) =>
         e.name.toLowerCase().includes(searchsend.toLowerCase())
       );
     } else if (value !== "Asc") {
       switch (Search) {
         case "Asc":
           //carga por orden letra a z
-          return datos.sort((a, b) => {
+          return datos.sort((a: { name: string }, b: { name: string }) => {
             const NombreA = a.name.toLowerCase();
             const NombreB = b.name.toLowerCase();
 
@@ -82,7 +81,7 @@ const Body = ({ searchsend }) => {
           });
 
         case "LocAsc":
-          return datos.sort((a, b) => {
+          return datos.sort((a: { name: string }, b: { name: string }) => {
             const NombreA = a.name.toLowerCase();
             const NombreB = b.name.toLowerCase();
 
@@ -91,7 +90,7 @@ const Body = ({ searchsend }) => {
             return 0;
           });
         case "LocDes":
-          return datos.sort((a, b) => {
+          return datos.sort((a: { name: string }, b: { name: string }) => {
             const NombreA = a.name.toLowerCase();
             const NombreB = b.name.toLowerCase();
 
@@ -100,7 +99,7 @@ const Body = ({ searchsend }) => {
             return 0;
           });
         case "chatAsc":
-          return datos.sort((a, b) => {
+          return datos.sort((a: { name: string }, b: { name: string }) => {
             const NombreA = a.name.toLowerCase();
             const NombreB = b.name.toLowerCase();
 
@@ -109,7 +108,7 @@ const Body = ({ searchsend }) => {
             return 0;
           });
         case "chatDes":
-          return datos.sort((a, b) => {
+          return datos.sort((a: { name: string }, b: { name: string }) => {
             const NombreA = a.name.toLowerCase();
             const NombreB = b.name.toLowerCase();
 
@@ -125,7 +124,7 @@ const Body = ({ searchsend }) => {
     return datos;
   };
 
-  const handleSortAsc = (e) => {
+  const handleSortAsc = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setvalue("");
     setSearch(e.target.value);
     filterData();
@@ -164,10 +163,7 @@ const Body = ({ searchsend }) => {
           </option>
         </select>
       </div>
-
       {showlist()}
     </div>
   );
 };
-
-export default Body;

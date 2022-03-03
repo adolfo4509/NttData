@@ -1,4 +1,4 @@
-import { FETCH_USERS } from "../actions/intex";
+import { FETCH_USERS, ORDER_BY_NAME } from "../actions/intex";
 
 interface stateI {
   clash: [];
@@ -17,10 +17,15 @@ interface actionI {
 
 function reducer(state: stateI = initialState, action: actionI) {
   switch (action.type) {
-    case FETCH_USERS:
+    case "FETCH_USERS":
       return {
         ...state,
         clash: action.payload,
+      };
+    case "ORDER_BY_NAME":
+      return {
+        ...state,
+        filterClash: action.payload,
       };
     default:
       return state;
