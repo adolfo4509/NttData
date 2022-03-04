@@ -7,7 +7,7 @@ function App() {
   return (
     <div>
       <NavBar />
-      <Body />
+      <Body searchsend={undefined} />
     </div>
   );
 }
