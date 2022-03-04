@@ -17,12 +17,12 @@ interface actionI {
 
 function reducer(state: stateI = initialState, action: actionI) {
   switch (action.type) {
-    case "FETCH_USERS":
+    case FETCH_USERS:
       return {
         ...state,
         clash: action.payload,
       };
-    case "ORDER_BY_NAME":
+    case ORDER_BY_NAME:
       return {
         ...state,
         filterClash: action.payload,
